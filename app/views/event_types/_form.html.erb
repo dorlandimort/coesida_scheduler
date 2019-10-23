@@ -1,0 +1,19 @@
+<%= form_for(event_type, html: { id: 'event_type_form' }) do |f| %>
+  <div class="form-group">
+    <label>Nombre *</label>
+    <%= f.text_field 'name', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Descripción</label>
+    <%= f.text_area 'description', rows: 3, class: 'form-control', placeholder: '', required: false %>
+  </div>
+  <div class="form-group">
+    <label>Color</label>
+    <div class="color-picker"></div>
+    <input type="hidden" id="event_type_color" name="event_type[color]" value="<%= event_type&.color || '#42445a' %>">
+  </div>
+  <div class="text-inverse">
+    <a href="<%= event_types_path %>" class="btn btn-space btn-secondary">Cancelar</a>
+    <button class="btn btn-space btn-primary" type="submit">Guardar</button>
+  </div>
+<% end %>

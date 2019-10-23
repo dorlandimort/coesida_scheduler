@@ -1,0 +1,41 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'datatables/datatables' %>
+  <%= javascript_include_tag 'datatables/datatables' %>
+  <%= javascript_include_tag 'datatables/datatables_es' %>
+  <%= javascript_include_tag 'app/event_types/index' %>
+<% end %>
+<%= content_for :page_title do  %>
+  <%= render partial: 'shared/page_title', locals: { title: 'Tipos de Evento' } %>
+<% end %>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="pull-right">
+          <a href="<%= new_event_type_path %>" class="btn  btn-primary btn-xs"><i class="s7-plus"></i> Nuevo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-fw-widget" id="event_types_datatable" data-source="<%= event_types_path(format: :json) %>">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Color</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

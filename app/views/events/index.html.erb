@@ -1,0 +1,51 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'full-calendar/core/main' %>
+  <%= stylesheet_link_tag 'full-calendar/daygrid/main' %>
+  <%= stylesheet_link_tag 'flatpickr/flatpickr' %>
+  <%= javascript_include_tag 'full-calendar/core/main' %>
+  <%= javascript_include_tag 'full-calendar/interaction/main' %>
+  <%= javascript_include_tag 'full-calendar/core/locales/es' %>
+  <%= javascript_include_tag 'full-calendar/daygrid/main' %>
+  <%= javascript_include_tag 'moment/moment' %>
+  <%= javascript_include_tag 'jquery-validate/jquery.validate' %>
+  <%= javascript_include_tag 'jquery-validate/localization/messages_es' %>
+  <%= javascript_include_tag 'flatpickr/flatpickr' %>
+  <%= javascript_include_tag 'flatpickr/l10n/es' %>
+  <%= javascript_include_tag 'util/fetch' %>
+  <%= javascript_include_tag 'app/events/index' %>
+<% end %>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="card" >
+      <div class="card-body" >
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="pull-right">
+              <button type="button" class="btn btn-primary" id="btn-new-event"><i class="s7-plus"></i> Nuevo evento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="max-height: 100%;">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="card" >
+      <div class="card-body" >
+        <div id="calendar" ></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button " data-dismiss="modal" aria-hidden="true"><i class="icon s7-close"></i></button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
