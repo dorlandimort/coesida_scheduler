@@ -1,0 +1,2 @@
+class WorkCenter < ApplicationRecord
+end

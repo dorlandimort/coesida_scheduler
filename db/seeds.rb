@@ -7,3 +7,10 @@ unless User.count > 0
   me.add_role :SUPER
   karimnot.add_role :SUPER
 end
+
+unless Role.count > 2
+  Role.create!(name: 'MEDICO')
+  Role.create!(name: 'RECEPCIONISTA')
+  Role.create!(name: 'RESPONSABLE')
+  Role.create!(name: 'ADMINISTRADOR')
+end
