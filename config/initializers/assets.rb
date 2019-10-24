@@ -13,5 +13,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( app/* util/* )
-Rails.application.config.assets.precompile += %w( pickr/* flatpickr/* )
+Rails.application.config.assets.precompile += %w( pickr/* flatpickr/* switch/* )
 Rails.application.config.assets.precompile += %w( jquery-validate/* datatables/* full-calendar/* moment/*)

@@ -21,4 +21,9 @@
 $(document).ready(function(){
     //- initialize the javascript
     App.init();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 });

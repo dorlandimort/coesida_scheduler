@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_200456) do
+ActiveRecord::Schema.define(version: 2019_10_23_190834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "cedula"
+    t.boolean "status", default: true, null: false
+    t.bigint "user_id"
+    t.bigint "work_center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+    t.index ["work_center_id"], name: "index_doctors_on_work_center_id"
+  end
 
   create_table "event_types", force: :cascade do |t|
     t.string "name"
@@ -39,6 +50,27 @@ ActiveRecord::Schema.define(version: 2019_10_22_200456) do
     t.index ["assigned_to_id"], name: "index_events_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_events_on_created_by_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.string "description"
+    t.boolean "status", default: true, null: false
+    t.bigint "user_id"
+    t.bigint "work_center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_managers_on_user_id"
+    t.index ["work_center_id"], name: "index_managers_on_work_center_id"
+  end
+
+  create_table "receptionists", force: :cascade do |t|
+    t.boolean "status", default: true, null: false
+    t.bigint "user_id"
+    t.bigint "work_center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_receptionists_on_user_id"
+    t.index ["work_center_id"], name: "index_receptionists_on_work_center_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -74,5 +106,21 @@ ActiveRecord::Schema.define(version: 2019_10_22_200456) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "work_centers", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
+    t.string "description"
+    t.string "address"
+    t.boolean "status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "doctors", "users"
+  add_foreign_key "doctors", "work_centers"
   add_foreign_key "events", "event_types"
+  add_foreign_key "managers", "users"
+  add_foreign_key "managers", "work_centers"
+  add_foreign_key "receptionists", "users"
+  add_foreign_key "receptionists", "work_centers"
 end

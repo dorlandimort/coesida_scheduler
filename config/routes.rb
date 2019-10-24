@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     authenticate :user do
       resources :event_types
+      post 'users/check_existence', to: 'users#check_existence'
       resources :users do
         resources :events, only: [:index], controller: 'users/events'
       end

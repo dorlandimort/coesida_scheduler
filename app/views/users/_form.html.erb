@@ -1,0 +1,49 @@
+<%= form_for(user, html: { id: 'user_form' }) do |f| %>
+  <input type="hidden" id="user_id" value="<%= user&.id %>">
+  <div class="form-group">
+    <label>Nombre (s) *</label>
+    <%= f.text_field 'first_name', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Apellido Paterno *</label>
+    <%= f.text_field 'last_name', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Apellido Materno </label>
+    <%= f.text_field 'mother_last_name', class: 'form-control', placeholder: '', required: false %>
+  </div>
+
+  <div class="form-group">
+    <label>Correo electrónico *</label>
+    <%= f.email_field 'email', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <% if user&.id %>
+    <div class="form-group">
+      <label for="change_password">Cambiar contraseña</label>
+      <input type="checkbox" id="change_password" class="checkbox-switch" checked />
+    </div>
+    <% end %>
+  <div id="password_fields">
+    <div class="form-group">
+      <label>Contraseña *</label>
+      <%= f.password_field 'password', class: 'form-control', placeholder: '6 caracteres mínimo', required: true %>
+    </div>
+    <div class="form-group">
+      <label>Confirmar contraseña *</label>
+      <%= f.password_field 'password_confirmation', class: 'form-control', placeholder: '', required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= select_tag 'role', options_for_select(Role.displayable.order(:name).pluck(:name), user&.roles&.first&.name),
+                   prompt: 'Seleccione un rol', class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <label for="allow_login">Permitir inicio de sesión</label>
+    <input type="checkbox" id="allow_login"  checked />
+  </div>
+  <div class="text-inverse">
+    <a href="<%= users_path %>" class="btn btn-space btn-secondary">Cancelar</a>
+    <button class="btn btn-space btn-primary" type="submit">Guardar</button>
+  </div>
+<% end %>

@@ -1,8 +1,3 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    }
-});
 
 Fetch = {
     get: function (url, data, dataType, callback) {
