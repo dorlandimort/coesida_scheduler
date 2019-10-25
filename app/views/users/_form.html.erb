@@ -40,7 +40,7 @@
 
   <div class="form-group">
     <label for="allow_login">Permitir inicio de sesión</label>
-    <input type="checkbox" id="allow_login"  checked />
+    <%= f.check_box 'status', class: 'checkbox-switch' %>
   </div>
   <div class="text-inverse">
     <a href="<%= users_path %>" class="btn btn-space btn-secondary">Cancelar</a>

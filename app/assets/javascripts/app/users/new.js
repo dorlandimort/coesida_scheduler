@@ -27,8 +27,8 @@ function initFormValidation() {
 }
 
 function initFormElements() {
-    var el = document.querySelector('.checkbox-switch');
-    var mySwitch = new Switch(el, {
+    const el = document.querySelector('#change_password');
+    const mySwitch = new Switch(el, {
         onText: 'Si',
         offText: 'No',
         size: 'small',
@@ -40,6 +40,14 @@ function initFormElements() {
             }
         }
     });
+
+    const allowLogin = document.querySelector('#user_status');
+    const allowLoginSwitch = new Switch(allowLogin, {
+        onText: 'Si',
+        offText: 'No',
+        size: 'small'
+    })
+
 }
 
 $(document).ready(function() {
