@@ -1,0 +1,28 @@
+<%= form_for(work_center, html: { id: 'work_center_form' }) do |f| %>
+  <input type="hidden" id="work_center_id" value="<%= work_center&.id %>">
+  <div class="form-group">
+    <label>Nombre *</label>
+    <%= f.text_field 'name', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Nombre corto</label>
+    <%= f.text_field 'short_name', class: 'form-control', placeholder: '', required: false %>
+  </div>
+  <div class="form-group">
+    <label>Descripción </label>
+    <%= f.text_area 'description', rows: 3, class: 'form-control', placeholder: '', required: false %>
+  </div>
+
+  <div class="form-group">
+    <label>Dirección *</label>
+    <%= f.text_field 'address', class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label for="change_password">¿Centro de Trabajo Activo?</label>
+    <%= f.check_box 'status', class: 'checkbox-switch' %>
+  </div>
+  <div class="text-inverse">
+    <a href="<%= users_path %>" class="btn btn-space btn-secondary">Cancelar</a>
+    <button class="btn btn-space btn-primary" type="submit">Guardar</button>
+  </div>
+<% end %>

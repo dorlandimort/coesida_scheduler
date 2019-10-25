@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         resources :events, only: [:index], controller: 'users/events'
       end
       resources :events
+      resources :work_centers
     end
 
   end
