@@ -1,0 +1,22 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'switch/switch' %>
+  <%= javascript_include_tag 'jquery-validate/jquery.validate' %>
+  <%= javascript_include_tag 'jquery-validate/localization/messages_es' %>
+  <%= javascript_include_tag 'switch/switch' %>
+  <%= javascript_include_tag 'util/fetch' %>
+  <%= javascript_include_tag 'app/doctors/new' %>
+<% end %>
+<%= content_for :page_title do  %>
+  <%= render partial: 'shared/page_title', locals: { title: 'Editar médico' } %>
+<% end %>
+<div class="row">
+  <div class="col-md-2 col-sm-1 col-xs-1"></div>
+  <div class="col-md-8 col-sm-10 col-xs-10">
+    <div class="card">
+      <div class="card-body">
+        <%= render partial: 'doctors/form', locals: { doctor: @doctor } %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-1 col-xs-1"></div>
+</div>

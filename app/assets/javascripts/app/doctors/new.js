@@ -1,11 +1,11 @@
 function initFormValidation() {
-    $("#manager_form").validate({
+    $("#doctor_form").validate({
         errorClass: 'text-danger'
     })
 }
 
 function initFormElements() {
-    const allowLogin = document.querySelector('#manager_status');
+    const allowLogin = document.querySelector('#doctor_status');
     const allowLoginSwitch = new Switch(allowLogin, {
         onText: 'Si',
         offText: 'No',
@@ -13,7 +13,7 @@ function initFormElements() {
     });
 }
 
-$(document).on('change', '#manager_user_id', async function() {
+$(document).on('change', '#doctor_user_id', async function() {
    const value = $(this).val();
    if (value) {
        try {

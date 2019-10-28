@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :events
       resources :work_centers
       resources :managers
+      resources :doctors
     end
 
   end
