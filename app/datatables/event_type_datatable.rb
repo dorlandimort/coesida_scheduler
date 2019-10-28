@@ -13,7 +13,9 @@ class EventTypeDatatable < AjaxDatatablesRails::ActiveRecord
       id: { source: "EventType.id", cond: :eq },
       name: { source: "EventType.name", cond: :like },
       description: { source: "EventType.description", cond: :like },
-      color: { source: "EventType.color", cond: :like }
+      color: { source: "EventType.color", cond: :like },
+      duration: { source: 'EventType.duration' },
+      status: { source: 'EventType.status' }
     }
   end
 
@@ -24,6 +26,8 @@ class EventTypeDatatable < AjaxDatatablesRails::ActiveRecord
         name: record.name,
         description: record.description,
         color: record.color,
+        status: record.status,
+        duration: record.duration,
         link: edit_event_type_path(record)
       }
     end

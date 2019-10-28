@@ -1,12 +1,12 @@
 class EventTypesController < ApplicationController
-  before_action :load_event_type, only: [:edit, :update]
+  before_action :load_event_type, only: %i[edit update]
 
   def index
     respond_to do |format|
       format.html
-      format.json {
+      format.json do
         render json: EventTypeDatatable.new(params, view_context: view_context)
-      }
+      end
     end
   end
 
@@ -19,33 +19,25 @@ class EventTypesController < ApplicationController
     if @event_type.save
       flash[:notice] = "El elemento ha sido guardado correctamente"
       redirect_to event_types_path
-      return
     else
       flash[:alert] = "Ocurrió un error. Por favor revise la información"
       render 'new'
-      return
     end
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     if @event_type.update(event_type_params)
       flash[:notice] ="El elemento ha sido guardado correctamente"
       redirect_to event_types_path
-      return
     else
       flash[:alert] = "Ocurrió un error. Por favor revise la información"
       render 'edit'
-      return
     end
   end
 
-  def _form
-
-  end
+  def _form; end
 
   private
 
@@ -54,6 +46,6 @@ class EventTypesController < ApplicationController
   end
 
   def event_type_params
-    params.require(:event_type).permit(:name, :description, :color)
+    params.require(:event_type).permit(:name, :description, :color, :duration, :status)
   end
 end

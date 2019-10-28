@@ -31,7 +31,17 @@ function initFormValidation() {
     });
 }
 
+function initFormElements() {
+    const status = document.querySelector('#event_type_status');
+    new Switch(status, {
+        onText: 'Si',
+        offText: 'No',
+        size: 'small'
+    });
+}
+
 $(document).ready(function() {
    initColorPicker();
+   initFormElements();
    initFormValidation();
 });

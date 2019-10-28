@@ -23,6 +23,24 @@ function initDatatable() {
                 }
             },
             {
+                data: 'duration'
+            },
+            {
+                data: 'status',
+                render: function(data, type, row) {
+                    if (type === 'display') {
+                        let className = 'success';
+                        let status = 'Activo';
+                        if (row.status == 'false') {
+                            className = 'danger';
+                            status = 'inactivo';
+                        }
+                        data = `<span class="badge badge-${className}">${status}</span>`;
+                    }
+                    return data;
+                }
+            },
+            {
                 data: 'id', searchable: false, sortable: false,
                 render: function(data, type, row) {
                     if (type === 'display') {

@@ -8,9 +8,17 @@
     <%= f.text_area 'description', rows: 3, class: 'form-control', placeholder: '', required: false %>
   </div>
   <div class="form-group">
+    <label>Duración en minutos</label>
+    <%= f.number_field 'duration', min: 1, class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
     <label>Color</label>
     <div class="color-picker"></div>
     <input type="hidden" id="event_type_color" name="event_type[color]" value="<%= event_type&.color || '#42445a' %>">
+  </div>
+  <div class="form-group">
+    <label>¿Activo?</label>
+    <%= f.check_box 'status' %>
   </div>
   <div class="text-inverse">
     <a href="<%= event_types_path %>" class="btn btn-space btn-secondary">Cancelar</a>
