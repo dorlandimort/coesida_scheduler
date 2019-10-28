@@ -1,0 +1,26 @@
+<%= form_for(receptionist, html: { id: 'receptionist_form' }) do |f| %>
+  <div class="form-group">
+    <label>Centro de Trabajo: </label>
+    <%= f.select 'work_center_id', options_for_select(WorkCenter.all.pluck(:name, :id)), { prompt: 'Seleccione un centro de trabajo'}, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Usuario a asignar: </label>
+    <%= f.select 'user_id', options_for_select((User.unassigned.order(:first_name, :last_name, :mother_last_name) + User.where(id: receptionist&.user)).map { |user| [user.full_name, user.id] }, receptionist&.user_id), { prompt: 'Seleccione un usuario'}, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Nombre (s) *</label>
+    <%= text_field_tag 'user[first_name]', receptionist&.user&.first_name, class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Apellido Paterno *</label>
+    <%= text_field_tag 'user[last_name]', receptionist&.user&.last_name, class: 'form-control', placeholder: '', required: true %>
+  </div>
+  <div class="form-group">
+    <label>Apellido Materno </label>
+    <%= text_field_tag 'user[mother_last_name]', receptionist&.user&.mother_last_name, class: 'form-control', placeholder: '', required: false %>
+  </div>
+  <div class="text-inverse">
+    <a href="<%= receptionists_path %>" class="btn btn-space btn-secondary">Cancelar</a>
+    <button class="btn btn-space btn-primary" type="submit">Guardar</button>
+  </div>
+<% end %>

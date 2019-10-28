@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :work_centers
       resources :managers
       resources :doctors
+      resources :receptionists
     end
 
   end
