@@ -26,7 +26,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.json { render json: @user }
+    end
+  end
 
   def edit; end
 

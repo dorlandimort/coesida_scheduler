@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
       resources :events
       resources :work_centers
+      resources :managers
     end
 
   end
