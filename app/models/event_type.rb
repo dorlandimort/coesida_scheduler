@@ -4,6 +4,16 @@ class EventType < ApplicationRecord
   before_save :generate_text_color
   before_update :generate_text_color
 
+  scope :active, -> { where(status: true) }
+
+  def event_ui_data
+    { title: self.name, duration: self.duration_string }.to_json
+  end
+
+  def duration_string
+    "00:#{self.duration}"
+  end
+
   private
 
   def generate_text_color

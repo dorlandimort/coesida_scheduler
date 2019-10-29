@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :event_types
       post 'users/check_existence', to: 'users#check_existence'
       resources :users do
-        resources :events, only: [:index], controller: 'users/events'
+        resources :events, only: [:index, :create, :edit, :update, :destroy], controller: 'users/events'
       end
       resources :events
       resources :work_centers

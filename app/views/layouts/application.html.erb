@@ -11,7 +11,7 @@
     <%= yield :head %>
   </head>
   <body>
-  <div class="am-wrapper">
+  <div class="am-wrapper <%= yield :layout_options %>">
     <nav class="navbar navbar-expand-md fixed-top am-top-header">
       <div class="container-fluid">
         <div class="am-navbar-header">
@@ -43,7 +43,7 @@
       <div class="content">
         <div class="am-logo"></div>
         <ul class="sidebar-elements">
-          <li><a href="<%= events_path %>"><i class="icon s7-date"></i><span>Agenda</span></a>
+          <li><a href="<%= user_events_path(current_user) %>"><i class="icon s7-date"></i><span>Mi agenda</span></a>
           </li>
           <li class="parent"><a href="#"><i class="icon s7-settings"></i><span>Administración</span></a>
             <ul class="sub-menu">
@@ -61,7 +61,8 @@
         </ul>
       </div>
     </div>
-    <div class="am-content">
+    <div class="am-content am-no-padding">
+      <%= yield :sidebar %>
       <div class="main-content">
         <%= yield %>
       </div>

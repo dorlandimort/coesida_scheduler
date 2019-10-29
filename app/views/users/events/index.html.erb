@@ -1,0 +1,87 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'full-calendar/core/main' %>
+  <%= stylesheet_link_tag 'full-calendar/daygrid/main' %>
+  <%= stylesheet_link_tag 'full-calendar/timegrid/main' %>
+  <%= javascript_include_tag 'jquery/ui/core' %>
+  <%= javascript_include_tag 'jquery/ui/widget' %>
+  <%= javascript_include_tag 'jquery/ui/mouse' %>
+  <%= javascript_include_tag 'jquery/ui/draggable' %>
+  <%= javascript_include_tag 'full-calendar/core/main' %>
+  <%= javascript_include_tag 'full-calendar/interaction/main' %>
+  <%= javascript_include_tag 'full-calendar/core/locales/es' %>
+  <%= javascript_include_tag 'full-calendar/daygrid/main' %>
+  <%= javascript_include_tag 'full-calendar/timegrid/main' %>
+  <%= javascript_include_tag 'moment/moment' %>
+  <%= javascript_include_tag 'jquery-validate/jquery.validate' %>
+  <%= javascript_include_tag 'jquery-validate/localization/messages_es' %>
+  <%= javascript_include_tag 'bootbox/bootbox' %>
+  <%= javascript_include_tag 'util/fetch' %>
+  <%= javascript_include_tag 'app/users/events/index' %>
+<% end %>
+<style>
+  .page-aside .aside-content .nav li a:hover {
+    text-decoration: none;
+    background-color: currentColor;
+  }
+  .event-draggable {
+    z-index: 99999 !important;
+  }
+
+
+</style>
+<input type="hidden" id="base_url" value="<%= user_events_path current_user %>" >
+<input type="hidden" id="base_url_json" value="<%= user_events_path(current_user, format: :json) %>">
+<%= content_for :layout_options do  %>
+  am-aside am-fixed-sidebar
+<% end %>
+<%= content_for :sidebar do %>
+  <aside class="page-aside">
+    <div class="am-scroller-aside">
+      <div class="aside-content">
+        <div class="content">
+          <div class="aside-header">
+            <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse"><span class="icon s7-angle-down"></span></button>
+            <h3>Eventos disponibles</h3>
+          </div>
+        </div>
+        <div class="aside-nav collapse">
+          <ul class="nav nav-pills">
+            <% EventType.active.order(:name).each do |event_type| %>
+              <li>
+                <a href="javascript:void(0);" class="event-draggable" data-title="<%= event_type.name %>"
+                   data-duration="<%= event_type.duration_string %>" data-color="<%= event_type.color %>"
+                   data-text-color="<%= event_type.text_color %>"
+                   data-event-type-id="<%= event_type.id %>"
+                   style="background-color: <%= event_type.color %>; color: <%= event_type.text_color %>;">
+                  <%= event_type.name %><span class="badge float-right"
+                                              style="color: <%= event_type.text_color %>;">
+                                        <%= event_type.duration %> min.</span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
+<% end %>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body" >
+        <div id="calendar" ></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="icon s7-close"></i></button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

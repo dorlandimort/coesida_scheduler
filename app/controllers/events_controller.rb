@@ -7,7 +7,7 @@ class EventsController < ApplicationController
         events = Event.all
         events = events.starting_at(params[:start].to_date.strftime('%Y-%m-%d %H:%M'))
                      .ending_at(params[:end].to_date.strftime('%Y-%m-%d %H:%M')).order(:starts_at) unless params[:start].nil? or params[:end].nil?
-        puts events
+
         render json: events
       }
     end

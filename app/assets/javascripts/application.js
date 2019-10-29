@@ -15,8 +15,11 @@
 //= require jquery/jquery
 //= require perfect-scrollbar/perfect-scrollbar
 //= require boostrap/bootstrap.bundle
+//= require freeze-ui/freeze-ui
 //= require toastr
 //= require app
+//= require util/freeze_ui_wrapper
+//= require util/notifications
 
 $(document).ready(function(){
     //- initialize the javascript

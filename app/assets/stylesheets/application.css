@@ -12,6 +12,7 @@
  *
  *= require stroke-7/style
  *= require perfect-scrollbar/perfect-scrollbar
+ *= require freeze-ui/freeze-ui
  *= require app
  *= require toastr
  *= require custom
