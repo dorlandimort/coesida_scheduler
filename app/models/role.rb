@@ -11,4 +11,8 @@ class Role < ApplicationRecord
   scopify
 
   scope :displayable, -> { where.not(name: 'SUPER') }
+
+  def self.super_role
+    :SUPER
+  end
 end

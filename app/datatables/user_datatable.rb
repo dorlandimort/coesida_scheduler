@@ -5,7 +5,11 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
 
   def initialize(params, opts = {})
     @view = opts[:view_context]
-    super(params)
+    super(params, opts)
+  end
+
+  def user
+    @user ||= options[:user]
   end
 
   def view_columns
@@ -36,7 +40,12 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    User.all.joins(:roles)
+    if user.has_role? Role.super_role
+      User.all.joins(:roles)
+    else
+      User.all.without_role(Role.super_role).joins(:roles)
+    end
+
   end
 
 end

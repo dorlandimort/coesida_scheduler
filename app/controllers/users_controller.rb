@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: UserDatatable.new(params, view_context: view_context)
+        render json: UserDatatable.new(params, view_context: view_context, user: current_user)
       end
     end
   end

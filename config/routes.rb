@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
 
     authenticated :user do
-      root 'users#index', as: :authenticated_root
+      root 'event_types#index', as: :authenticated_root
     end
 
     authenticate :user do
