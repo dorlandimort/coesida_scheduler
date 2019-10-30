@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :created_events, class_name: 'Event', foreign_key: 'created_by_id'
   has_many :assigned_events, class_name: 'Event', foreign_key: 'assigned_to_id'
+  has_one :receptionist
+  has_one :doctor
+  has_one :manager
 
   scope :unassigned, lambda {
     joins("LEFT JOIN managers m on m.user_id = users.id
@@ -25,4 +28,9 @@ class User < ApplicationRecord
   def inactive_message
     "Su cuenta no tiene permisos para iniciar sesión"
   end
+
+  def remove_roles
+    self.roles.delete_all
+  end
+
 end

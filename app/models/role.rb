@@ -15,4 +15,20 @@ class Role < ApplicationRecord
   def self.super_role
     :SUPER
   end
+
+  def self.receptionist_role
+    :RECEPCIONISTA
+  end
+
+  def self.doctor_role
+    :MEDICO
+  end
+
+  def self.manager_role
+    :RESPONSABLE
+  end
+
+  def self.admin_role
+    :ADMINISTRADOR
+  end
 end

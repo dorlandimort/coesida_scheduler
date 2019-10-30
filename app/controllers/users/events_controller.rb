@@ -5,15 +5,9 @@ class Users::EventsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json {
-        if params[:start].nil? or params[:end].nil?
-          render json: @user.assigned_events.order(:starts_at)
-        else
-          render json: @user.assigned_events.starting_at(params[:start].to_date.strftime('%Y-%m-%d %H:%M'))
-                           .ending_at(params[:end].to_date.strftime('%Y-%m-%d %H:%M'))
-                           .order(:starts_at)
-        end
-      }
+      format.json do
+        render json: @user.assigned_events.for_full_calendar(params)
+      end
     end
   end
 
@@ -23,21 +17,21 @@ class Users::EventsController < ApplicationController
     event.assigned_to_id = @user.id
     respond_to do |format|
       if event.save
-        format.html {
+        format.html do
           flash[:notice] = 'El elemento fue guardado correctamente.'
           redirect_to user_events_path @user
-        }
-        format.json {
+        end
+        format.json do
           render json: event
-        }
+        end
       else
-        format.html {
+        format.html do
           flash[:notice] = 'El elemento fue guardado correctamente.'
           redirect_to user_events_path @user
-        }
-        format.json {
+        end
+        format.json do
           render json: event.errors.to_json, status: :unprocessable_entity
-        }
+        end
       end
     end
   end
@@ -49,21 +43,21 @@ class Users::EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html {
+        format.html do
           flash[:notice] = 'El elemento ha sido guardado correctamente.'
           redirect_to user_events_path @user
-        }
-        format.json {
+        end
+        format.json do
           render json: @event
-        }
+        end
       else
-        format.html {
+        format.html do
           flash[:alert] = 'El elemento no pude ser actualizado, por favor revise la información'
           redirect_to user_events_path @user
-        }
-        format.json {
+        end
+        format.json do
           render json: @event.errors.to_json, status: :unprocessable_entity
-        }
+        end
       end
     end
   end
@@ -71,13 +65,13 @@ class Users::EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html {
+      format.html do
         flash[:notice] = 'El elemento fue eliminado correctamente.'
         redirect_to user_events_path @user
-      }
-      format.json {
+      end
+      format.json do
         render json: @event
-      }
+      end
     end
   end
 

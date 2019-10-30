@@ -5,7 +5,7 @@
   </div>
   <div class="form-group">
     <label>Usuario a asignar: </label>
-    <%= f.select 'user_id', options_for_select((User.unassigned.order(:first_name, :last_name, :mother_last_name) + User.where(id: receptionist&.user)).map { |user| [user.full_name, user.id] }, receptionist&.user_id), { prompt: 'Seleccione un usuario'}, class: 'form-control', required: true %>
+    <%= f.select 'user_id', options_for_select((User.unassigned.with_role(Role.receptionist_role).order(:first_name, :last_name, :mother_last_name) + User.where(id: receptionist&.user)).map { |user| [user.full_name, user.id] }, receptionist&.user_id), { prompt: 'Seleccione un usuario'}, class: 'form-control', required: true %>
   </div>
   <div class="form-group">
     <label>Nombre (s) *</label>

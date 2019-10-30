@@ -19,7 +19,9 @@ Rails.application.routes.draw do
         resources :events, only: [:index, :create, :edit, :update, :destroy], controller: 'users/events'
       end
       resources :events
-      resources :work_centers
+      resources :work_centers do
+        resources :events, only: [:index], controller: 'work_centers/events'
+      end
       resources :managers
       resources :doctors
       resources :receptionists

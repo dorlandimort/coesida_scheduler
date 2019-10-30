@@ -37,7 +37,8 @@ class UsersController < ApplicationController
   def update
     password = params[:user][:password]
     saved = password.blank? ? @user.update_without_password(user_params) : @user.update(user_params)
-
+    @user.remove_roles
+    @user.add_role params[:role].to_sym
     if saved
       flash[:notice] = "Elemento guardado correctamente"
       redirect_to users_path
