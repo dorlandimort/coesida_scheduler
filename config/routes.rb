@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       end
       resources :events
       resources :work_centers do
-        resources :events, only: [:index], controller: 'work_centers/events'
+        resources :events, only: [:index, :show], controller: 'work_centers/events'
       end
       resources :managers
       resources :doctors

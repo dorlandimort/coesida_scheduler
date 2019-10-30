@@ -52,8 +52,10 @@
             <% end %>
             </li>
           <% end %>
-          <li><a href="<%= user_events_path(current_user) %>"><i class="icon s7-date"></i><span>Mi agenda</span></a>
-          </li>
+          <% if current_user.has_role? Role.doctor_role %>
+            <li><a href="<%= user_events_path(current_user) %>"><i class="icon s7-date"></i><span>Mi agenda</span></a>
+            </li>
+          <% end %>
           <li class="parent"><a href="#"><i class="icon s7-settings"></i><span>Administración</span></a>
             <ul class="sub-menu">
               <li><a href="<%= work_centers_path %>">Centros de Trabajo</a></li>

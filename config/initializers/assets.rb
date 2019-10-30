@@ -12,6 +12,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( app/* util/* freeze-ui/* )
+Rails.application.config.assets.precompile += %w( app/* util/* freeze-ui/*  multiple-select/*)
 Rails.application.config.assets.precompile += %w( pickr/* flatpickr/* switch/* bootbox/* jquery/*)
 Rails.application.config.assets.precompile += %w( jquery-validate/* datatables/* full-calendar/* moment/*)

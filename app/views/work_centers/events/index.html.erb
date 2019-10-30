@@ -1,0 +1,94 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'full-calendar/core/main' %>
+  <%= stylesheet_link_tag 'full-calendar/daygrid/main' %>
+  <%= stylesheet_link_tag 'full-calendar/timegrid/main' %>
+  <%= stylesheet_link_tag 'multiple-select/multiple-select' %>
+  <%= javascript_include_tag 'jquery/ui/core' %>
+  <%= javascript_include_tag 'jquery/ui/widget' %>
+  <%= javascript_include_tag 'jquery/ui/mouse' %>
+  <%= javascript_include_tag 'jquery/ui/draggable' %>
+  <%= javascript_include_tag 'full-calendar/core/main' %>
+  <%= javascript_include_tag 'full-calendar/interaction/main' %>
+  <%= javascript_include_tag 'full-calendar/core/locales/es' %>
+  <%= javascript_include_tag 'full-calendar/daygrid/main' %>
+  <%= javascript_include_tag 'full-calendar/timegrid/main' %>
+  <%= javascript_include_tag 'moment/moment' %>
+  <%= javascript_include_tag 'jquery-validate/jquery.validate' %>
+  <%= javascript_include_tag 'jquery-validate/localization/messages_es' %>
+  <%= javascript_include_tag 'bootbox/bootbox' %>
+  <%= javascript_include_tag 'multiple-select/multiple-select' %>
+  <%= javascript_include_tag 'multiple-select/multiple-select-es-ES' %>
+  <%= javascript_include_tag 'util/fetch' %>
+  <%= javascript_include_tag 'app/work_centers/events/index' %>
+<% end %>
+<input type="hidden" id="base_url" value="<%= work_center_events_path current_user.receptionist&.work_center %>" >
+<input type="hidden" id="base_url_json" value="<%= work_center_events_path(current_user.receptionist&.work_center, format: :json) %>">
+<%= content_for :page_title do  %>
+  <%= render partial: 'shared/page_title', locals: { title: "#{@work_center.name} - Agenda" } %>
+<% end %>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="#" role="search" id="filter_form">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label>Médico</label><br>
+                <select id="doctors_select" class="form-control" multiple>
+                  <% @work_center.doctors.includes(:user)
+                         .order("users.first_name, users.last_name, users.mother_last_name").each do |doctor| %>
+                    <option value="<%= doctor.user.id %>" selected><%= doctor.user.full_name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label>Tipo de evento</label><br>
+                <select id="event_types_select" class="form-control" multiple>
+                  <%= EventType.active.order(:name).each do |event_type| %>
+                    <option value="<%= event_type.id %>" selected><%= event_type.name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label>Texto</label>
+                <input type="text" class="form-control" placeholder="Escriba su búsqueda" id="search_input">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="s7-filter"></i> Filtrar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body" >
+        <div id="calendar" ></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="icon s7-close"></i></button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

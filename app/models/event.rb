@@ -15,4 +15,22 @@ class Event < ApplicationRecord
       order(:starts_at)
     end
   }
+
+  def self.filter(events, params)
+    if params[:doctors]
+      events = events.where(assigned_to_id: params[:doctors][0].split(','))
+    end
+
+    if params[:event_types]
+      events = events.where(event_type_id: params[:event_types][0].split(','))
+    end
+
+    if params[:search_text]
+      unless params[:search_text].empty?
+        events = events.where("title ilike :search or description ilike :search",
+                              search: "%#{params[:search_text]}%")
+      end
+    end
+    events
+  end
 end

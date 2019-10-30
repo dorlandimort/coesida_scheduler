@@ -1,7 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :additional_attributes, :event_type,
              :color, :start, :end, :textColor
-  belongs_to :created_by
+  #belongs_to :created_by
   belongs_to :assigned_to
 
   def start
