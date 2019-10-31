@@ -43,6 +43,10 @@
       <div class="content">
         <div class="am-logo"></div>
         <ul class="sidebar-elements">
+          <% if current_user.has_any_role? Role.super_role, Role.admin_role %>
+            <li><a href="<%= events_path %>"><i class="icon s7-date"></i><span>Agenda</span></a>
+            </li>
+          <% end %>
           <% if current_user.has_role? Role.receptionist_role %>
             <li>
             <% if current_user&.receptionist&.work_center %>
@@ -56,19 +60,14 @@
             <li><a href="<%= user_events_path(current_user) %>"><i class="icon s7-date"></i><span>Mi agenda</span></a>
             </li>
           <% end %>
-          <li class="parent"><a href="#"><i class="icon s7-settings"></i><span>Administración</span></a>
-            <ul class="sub-menu">
-              <li><a href="<%= work_centers_path %>">Centros de Trabajo</a></li>
-              <li><a href="<%= managers_path %>">Responsables C.T</a></li>
-              <li><a href="<%= doctors_path %>">Médicos</a></li>
-              <li><a href="<%= receptionists_path %>">Recepcionistas</a></li>
-              <li><a href="<%= event_types_path %>">Tipos de evento</a>
-              </li>
-              <li>
-                <a href="<%= users_path %>">Usuarios</a>
-              </li>
-            </ul>
-          </li>
+          <% if current_user.has_any_role? Role.super_role, Role.admin_role %>
+            <li><a href="<%= work_centers_path %>"><i class="icon s7-portfolio"></i> <span>Centros de Trabajo</span></a></li>
+            <li><a href="<%= users_path %>"><i class="icon s7-id"></i> <span>Usuarios</span></a></li>
+            <li><a href="<%= managers_path %>"><i class="icon s7-network"></i> <span>Responsables C.T</span></a></li>
+            <li><a href="<%= doctors_path %>"><i class="icon s7-like"></i> <span>Médicos</span></a></li>
+            <li><a href="<%= receptionists_path %>"><i class="icon s7-users"></i> <span>Recepcionistas</span></a></li>
+            <li><a href="<%= event_types_path %>"><i class="icon s7-ribbon"></i> <span></span>Tipos de evento</a>
+            <% end %>
         </ul>
       </div>
     </div>

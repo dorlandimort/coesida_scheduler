@@ -23115,89 +23115,8 @@ address {
   line-height: 0.8;
 }
 
-/*------------------------------------------------------------------
-  [Error pages]
-*/
-.am-error .error-container {
-  text-align: center;
-}
 
-.am-error .error-number {
-  display: block;
-  color: #FFFFFF;
-  font-size: 10rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 120px;
-  text-shadow: 6px 5px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-}
 
-@media (max-width: 767px) {
-  .am-error .error-number {
-    font-size: 6.923rem;
-    margin-bottom: 10px;
-    line-height: 100px;
-  }
-}
-
-.am-error .error-description {
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 32px;
-  color: #cccccc;
-}
-
-@media (max-width: 767px) {
-  .am-error .error-description {
-    font-size: 1.462rem;
-  }
-}
-
-.am-error .error-goback-text {
-  font-size: 1.538rem;
-  font-weight: 300;
-  color: #a6a6a6;
-  margin-bottom: 30px;
-  margin-top: 15px;
-}
-
-@media (max-width: 767px) {
-  .am-error .error-goback-text {
-    font-size: 1.154rem;
-  }
-}
-
-/*------------------------------------------------------------------
-  [Page 404]
-*/
-.am-error-404 .error-container .error-image {
-  display: inline-block;
-  background: url("../img/404-img.png") no-repeat right center;
-  background-size: 387px 292px;
-  width: 100%;
-  max-width: 587px;
-  height: 292px;
-}
-
-.am-error-404 .error-container .error-image img {
-  max-width: 607px;
-  max-height: 459px;
-}
-
-@media -webkit-min-device-pixel-ratio {
-  .am-error-404 .error-container .error-image {
-    background-image: url("../img/404-img-2x.png");
-  }
-}
-
-@media (max-width: 767px) {
-  .am-error-404 .error-container .error-image {
-    background-size: 190px 142px;
-    max-width: 295px;
-    height: 142px;
-  }
-}
 
 /*------------------------------------------------------------------
   [Forgot password]

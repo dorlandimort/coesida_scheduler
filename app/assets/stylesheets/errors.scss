@@ -1,0 +1,274 @@
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.428571;
+  color: #555555;
+  text-align: left;
+  background-color: #f0f0f0;
+}
+
+[tabindex="-1"]:focus {
+  outline: 0 !important;
+}
+
+hr {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.6923rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0.6923rem;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+}
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-bottom: .5rem;
+  margin-left: 0;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+}
+
+dfn {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -.25em;
+}
+
+sup {
+  top: -.5em;
+}
+
+a {
+  color: #ef6262;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:hover {
+  color: #e71d1d;
+  text-decoration: underline;
+}
+
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):focus {
+  outline: 0;
+}
+
+/*------------------------------------------------------------------
+[Splash screen]
+*/
+.am-splash-screen {
+  background-color: #383737;
+}
+
+.am-splash-screen .am-wrapper {
+  padding-top: 0;
+}
+
+.am-splash-screen .am-wrapper .am-content {
+  margin: 0;
+}
+
+.am-splash-screen .am-wrapper .am-content a {
+  color: #ababab;
+}
+
+.am-splash-screen .am-wrapper .am-content a:hover {
+  color: #FFFFFF;
+}
+
+.main-content {
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 35px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .main-content {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+  }
+}
+
+.am-wrapper {
+  min-height: 100%;
+  padding-top: 80px;
+}
+
+/*------------------------------------------------------------------
+[Error pages]
+*/
+.am-error .error-container {
+  text-align: center;
+}
+
+.am-error .error-number {
+  display: block;
+  color: #FFFFFF;
+  font-size: 10rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  line-height: 120px;
+  text-shadow: 6px 5px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .am-error .error-number {
+    font-size: 6.923rem;
+    margin-bottom: 10px;
+    line-height: 100px;
+  }
+}
+
+.am-error .error-description {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 32px;
+  color: #cccccc;
+}
+
+@media (max-width: 767px) {
+  .am-error .error-description {
+    font-size: 1.462rem;
+  }
+}
+
+.am-error .error-goback-text {
+  font-size: 1.538rem;
+  font-weight: 300;
+  color: #a6a6a6;
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+
+@media (max-width: 767px) {
+  .am-error .error-goback-text {
+    font-size: 1.154rem;
+  }
+}
+/*------------------------------------------------------------------
+[Page 404]
+*/
+.am-error-404 .error-container .error-image {
+  display: inline-block;
+  background-size: 387px 292px;
+  width: 100%;
+  max-width: 587px;
+  height: 292px;
+}
+
+.am-error-404 .error-container .error-image img {
+  max-width: 607px;
+  max-height: 459px;
+}
+
+@media (max-width: 767px) {
+  .am-error-404 .error-container .error-image {
+    background-size: 190px 142px;
+    max-width: 295px;
+    height: 142px;
+  }
+}

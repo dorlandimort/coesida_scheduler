@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scheduler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'errors' %>
+  <%= yield :head %>
+</head>
+<body class="am-splash-screen">
+<div class="am-wrapper am-error am-error-404">
+  <div class="am-content">
+    <div class="main-content">
+      <div class="error-container">
+        <div class="error-image"></div>
+        <%= yield %>
+        <div class="error-goback-text">Regresar al <a href="<%= current_user.nil? ? unauthenticated_root_path : authenticated_root_path %>">inicio</a>?</div>
+        <div class="footer">&copy; 2019 <a href="https://karimnot.com" target="_blank"> Karimnot</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= toastr_notifications %>
+</body>
+</html>

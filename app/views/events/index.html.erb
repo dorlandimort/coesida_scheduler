@@ -1,37 +1,80 @@
 <%= content_for :head do %>
   <%= stylesheet_link_tag 'full-calendar/core/main' %>
   <%= stylesheet_link_tag 'full-calendar/daygrid/main' %>
-  <%= stylesheet_link_tag 'flatpickr/flatpickr' %>
+  <%= stylesheet_link_tag 'full-calendar/timegrid/main' %>
+  <%= stylesheet_link_tag 'multiple-select/multiple-select' %>
+  <%= javascript_include_tag 'jquery/ui/core' %>
+  <%= javascript_include_tag 'jquery/ui/widget' %>
+  <%= javascript_include_tag 'jquery/ui/mouse' %>
+  <%= javascript_include_tag 'jquery/ui/draggable' %>
   <%= javascript_include_tag 'full-calendar/core/main' %>
   <%= javascript_include_tag 'full-calendar/interaction/main' %>
   <%= javascript_include_tag 'full-calendar/core/locales/es' %>
   <%= javascript_include_tag 'full-calendar/daygrid/main' %>
+  <%= javascript_include_tag 'full-calendar/timegrid/main' %>
   <%= javascript_include_tag 'moment/moment' %>
   <%= javascript_include_tag 'jquery-validate/jquery.validate' %>
   <%= javascript_include_tag 'jquery-validate/localization/messages_es' %>
-  <%= javascript_include_tag 'flatpickr/flatpickr' %>
-  <%= javascript_include_tag 'flatpickr/l10n/es' %>
+  <%= javascript_include_tag 'bootbox/bootbox' %>
+  <%= javascript_include_tag 'multiple-select/multiple-select' %>
+  <%= javascript_include_tag 'multiple-select/multiple-select-es-ES' %>
   <%= javascript_include_tag 'util/fetch' %>
   <%= javascript_include_tag 'app/events/index' %>
 <% end %>
+<input type="hidden" id="base_url" value="<%= events_path %>" >
+<input type="hidden" id="base_url_json" value="<%= events_path(format: :json) %>">
+<%= content_for :page_title do  %>
+  <%= render partial: 'shared/page_title', locals: { title: "Agenda General" } %>
+<% end %>
 <div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="card" >
-      <div class="card-body" >
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="pull-right">
-              <button type="button" class="btn btn-primary" id="btn-new-event"><i class="s7-plus"></i> Nuevo evento</button>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="#" role="search" id="filter_form">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label>Centro de Trabajo</label>
+                <select class="form-control" id="work_centers_select" multiple>
+                  <% WorkCenter.all.order(:name).each do |work_center| %>
+                    <option value="<%= work_center.id %>" selected><%= work_center.name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <div class="form-group">
+                <label>Médicos</label>
+                <select class="form-control" id="doctors_select" multiple>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label>Tipo de evento</label><br>
+                <select id="event_types_select" class="form-control" multiple>
+                  <%= EventType.active.order(:name).each do |event_type| %>
+                    <option value="<%= event_type.id %>" selected><%= event_type.name %></option>
+                  <% end %>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="s7-filter"></i> Filtrar</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-<div class="row" style="max-height: 100%;">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="card" >
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
       <div class="card-body" >
         <div id="calendar" ></div>
       </div>
@@ -42,7 +85,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button class="close" type="button " data-dismiss="modal" aria-hidden="true"><i class="icon s7-close"></i></button>
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="icon s7-close"></i></button>
       </div>
       <div class="modal-body">
       </div>

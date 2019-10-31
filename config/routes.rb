@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, conttrollers: {
+  devise_for :users, controllers: {
       sessions: 'users/sessions'
   }
+
+  get 'not_found', to: 'not_found#index', as: :not_found
+
+  match '/404', to: 'not_found#index', via: :all
+  match '/500', to: 'not_found#index', via: :all
 
   devise_scope :user do
     unauthenticated :user do
@@ -9,7 +14,7 @@ Rails.application.routes.draw do
     end
 
     authenticated :user do
-      root 'event_types#index', as: :authenticated_root
+      root 'home#index', as: :authenticated_root
     end
 
     authenticate :user do
@@ -25,6 +30,7 @@ Rails.application.routes.draw do
       resources :managers
       resources :doctors
       resources :receptionists
+      resources :doctor_filters, only: :index
     end
 
   end
