@@ -14,8 +14,8 @@ function initCalendar() {
         slotEventOverlap: false,
         eventOverlap: false,
         slotDuration: '00:15:00', // 15 minutes
-        minTime: '07:00:00',
-        maxTime: '21:00:00',
+        minTime: '05:00:00',
+        maxTime: '23:59:00',
         defaultView: 'timeGridWeek',
         droppable: false,
         eventStartEditable: false,
